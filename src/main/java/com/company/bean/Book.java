@@ -1,4 +1,4 @@
-package com.company;
+package com.company.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

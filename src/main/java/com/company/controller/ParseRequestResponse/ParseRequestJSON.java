@@ -1,5 +1,6 @@
-package com.company;
+package com.company.controller.ParseRequestResponse;
 
+import com.company.bean.Book;
 import org.json.JSONObject;
 
 /**

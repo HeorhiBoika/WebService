@@ -1,5 +1,7 @@
-package com.company;
+package com.company.dao.implementation;
 
+import com.company.bean.Book;
+import com.company.dao.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,10 +13,11 @@ import java.util.List;
 /**
  * Created by PC on 14.04.2017.
  */
-public class HibernateUtil {
-    private  SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+public class HibernateUtilImpl implements HibernateUtil {
+    private SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
-    public HibernateUtil(){}
+    public HibernateUtilImpl() {
+    }
 
     public void addBook(Book book) {
         Session session = sessionFactory.openSession();
@@ -31,7 +34,7 @@ public class HibernateUtil {
         Transaction transaction = null;
 
         transaction = session.beginTransaction();
-        Query query =  session.createQuery("FROM Book");
+        Query query = session.createQuery("FROM Book");
         List books = query.list();
         transaction.commit();
         session.close();
@@ -39,13 +42,13 @@ public class HibernateUtil {
     }
 
     public void updateBook(Book book) {
-            Session session = this.sessionFactory.openSession();
-            Transaction transaction = null;
+        Session session = this.sessionFactory.openSession();
+        Transaction transaction = null;
 
-            transaction = session.beginTransaction();
-            session.update(book);
-            transaction.commit();
-            session.close();
+        transaction = session.beginTransaction();
+        session.update(book);
+        transaction.commit();
+        session.close();
     }
 
     public void removeBookById(int id) {
@@ -69,7 +72,7 @@ public class HibernateUtil {
         session.close();
     }
 
-    public Book getBookById(int id){
+    public Book getBookById(int id) {
         Session session = this.sessionFactory.openSession();
         Transaction transaction = null;
 

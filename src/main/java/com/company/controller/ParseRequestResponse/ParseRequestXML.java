@@ -1,5 +1,6 @@
-package com.company;
+package com.company.controller.ParseRequestResponse;
 
+import com.company.bean.Book;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

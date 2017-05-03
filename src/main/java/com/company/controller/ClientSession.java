@@ -40,8 +40,10 @@ public class ClientSession implements Runnable {
             System.out.println("Client session stop!!!!!!");
             PrintWriter pr = new PrintWriter(os, true);
             response.setStatusCode(503);
+            response.setContentLength(errorResponse.length());
             String resultError = response.getPatternResponseError() + errorResponse;
             pr.println(resultError);
+            pr.flush();
         } finally {
             try {
                 socket.close();
@@ -56,7 +58,7 @@ public class ClientSession implements Runnable {
         if (!responseBook.equals("invalid url")) {
             switch (request.getMethod()) {
                 case "GET":
-                    String messageGet = "<html><body><h1>" + responseBook + "</h1></body></html>\n";
+                    String messageGet = responseBook;
                     response.setContentLength(messageGet.length());
                     response.setStatusCode(200);
                     String resultGet = response.getPatternResponseOk() + messageGet;

@@ -1,14 +1,10 @@
 package com.company;
 
-import com.company.bean.Book;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import org.json.JSONObject;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -26,13 +22,12 @@ public class ClientSessionTest {
         RestAssured.given().header("Accept", "application/json").and()
                 .header("Content-Type", "application/json").and()
                 .when().get("rest").then().assertThat().statusCode(200).contentType(ContentType.JSON);
-
     }
 
     @Test(enabled = true)
     public void testPost() {
         JSONObject js = new JSONObject();
-        js.put("id", 3);
+        js.put("id", 1);
         js.put("name", "InterstBook");
         js.put("title", "kkkkkkk");
         RestAssured.given().header("Accept", "application/json").and()
@@ -44,14 +39,14 @@ public class ClientSessionTest {
     public void testGetNewBook() {
         RestAssured.given().header("Accept", "application/json").and()
                 .header("Content-Type", "application/json").and()
-                .when().get("rest/3").then().assertThat().statusCode(200).body("name", equalTo("InterstBook"));
+                .when().get("rest/1").then().assertThat().statusCode(200).body("name", equalTo("InterstBook"));
 
     }
 
     @Test(enabled = true)
     public void testDelete() {
 
-        RestAssured.delete("rest/3").then().assertThat().statusCode(200);
+        RestAssured.delete("rest").then().assertThat().statusCode(200);
     }
 
     @Test
